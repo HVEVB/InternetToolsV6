@@ -43,6 +43,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -64,6 +66,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Networking\HelperClasses\GetIPAddresses.cs" />
+    <Compile Include="Networking\HostnameIdentifyer\HostnameIdentifierM.cs" />
+    <Compile Include="Networking\HostnameIdentifyer\HostnameIdentifierDataStructure.cs" />
+    <Compile Include="Networking\HostnameIdentifyer\IHostnameIdentifier.cs" />
+    <Compile Include="Networking\Ping\IPing.cs" />
+    <Compile Include="Networking\Ping\Ping.cs" />
+    <Compile Include="Networking\Ping\PingDataStructure.cs" />
+    <Compile Include="Networking\PortCheck\IPortCheck.cs" />
+    <Compile Include="Networking\PortCheck\PortCheck.cs" />
+    <Compile Include="Networking\Traceroute\ITraceroute.cs" />
+    <Compile Include="Networking\Traceroute\Traceroute.cs" />
+    <Compile Include="Utils\BalloonMessage.cs" />
+    <Compile Include="ViewModels\PingViewModel.cs" />
+    <Compile Include="ViewModels\PortCheckViewModel.cs" />
+    <Compile Include="ViewModels\TracerouteViewModel.cs" />
+    <Compile Include="Views\PingView.xaml.cs">
+      <DependentUpon>PingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortCheckView.xaml.cs">
+      <DependentUpon>PortCheckView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TracerouteView.xaml.cs">
+      <DependentUpon>TracerouteView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,12 +98,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Utils\CommandRunner.cs" />
+    <Compile Include="Utils\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\PingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PortCheckView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TracerouteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Networking\NetworkUtils.cs" />
