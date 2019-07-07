@@ -9,8 +9,13 @@
         xmlns:local="clr-namespace:InternetToolsV6"
         Width="1080" Height="618.881"
         mc:Ignorable="d" ResizeMode="CanResizeWithGrip"
+        Background="#FF252525" 
+        NonActiveBorderBrush="#FF292929" 
+        NonActiveWindowTitleBrush="#FF292929" 
+        WindowTitleBrush="#FF272727" 
+        BorderBrush="#FF272727"
         Title="MainWindow">
-    <GroupBox Header="Main Panel">
+    <GroupBox Header="Main Panel" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C">
         <Grid>
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="Tools">

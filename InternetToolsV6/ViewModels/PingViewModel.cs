@@ -117,6 +117,10 @@ namespace InternetToolsV6.ViewModels
         {
             SendPing = new DelegateCommand(_callPing);
             ClearIPStatusList = new DelegateCommand(_callClearIPstatusList);
+            Timeout = 500;
+            icmpChecked = true;
+            TCPPort = 80;
+            UDPPort = 80;
         }
 
         #endregion
@@ -125,14 +129,53 @@ namespace InternetToolsV6.ViewModels
 
         private void _callPing()
         {
-            Task.Run(() =>
+            if (ICMPChecked)
             {
-                var oof = _Ping.SendICMPPing(Address, (int)Timeout);
-                App.Current.Dispatcher.InvokeAsync(() =>
+                Task.Run(() =>
                 {
-                    IpStatusList.Add(oof);
+                    var oof = _Ping.SendICMPPing(Address, (int)Timeout);
+                    App.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        IpStatusList.Add(oof);
+                    });
                 });
-            });
+            } 
+            if (TCPChecked)
+            {
+                Task.Run(() =>
+                {
+                    var oof = _Ping.SendTCPPing(Address, (int)Timeout, TCPPort);
+                    App.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        IpStatusList.Add(oof);
+                    });
+                });
+            }
+            if (UDPChecked)
+            {
+                Task.Run(() =>
+                {
+                    var oof = _Ping.SendUDPPing(Address, (int)Timeout, UDPPort);
+                    App.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        IpStatusList.Add(oof);
+                    });
+                });
+            }
+            if (ARPChecked)
+            {
+                Task.Run(() =>
+                {
+                    var oof = _Ping.SendARPPing(Address, (int)Timeout);
+                    foreach (var itm in oof)
+                    {
+                        App.Current.Dispatcher.InvokeAsync(() =>
+                        {
+                            IpStatusList.Add(itm);
+                        });
+                    }
+                });
+            }
         }
         private void _callClearIPstatusList() => IpStatusList.Clear();
 

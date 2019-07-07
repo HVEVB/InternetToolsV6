@@ -8,9 +8,9 @@ namespace InternetToolsV6.Networking.Ping
 {
     public interface IPing
     {
-        PingDataStructure SendICMPPing(string Address, int Timeout);
-        PingDataStructure SendTCPPing(string Address, int Timeout);
-        PingDataStructure SendUDPPing(string Address, int Timeout);
-        PingDataStructure SendARPPing(string Address, int Timeout);
+        PingDataStructure              SendICMPPing   (string Address, int Timeout);
+        PingDataStructure              SendTCPPing    (string Address, int Timeout, int Port);
+        PingDataStructure              SendUDPPing    (string Address, int Timeout, int Port);
+        IEnumerable<PingDataStructure> SendARPPing    (string Address, int Timeout);
     }
 }

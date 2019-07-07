@@ -13,46 +13,50 @@
         <viewmodel:PingViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <GroupBox Header="Configurations" HorizontalAlignment="Left" Width="200">
+        <GroupBox Header="Configurations" HorizontalAlignment="Left" Width="200" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C" Foreground="#FFE8E8E8">
             <Grid>
                 <StackPanel>
-                    <Label Content="Address"/>
-                    <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Command="{Binding SendPing}" Height="32" Content="Ping" Margin="0 5 0 5"/>
-                    <Label Content="Timeout"/>
-                    <Slider Value="{Binding Timeout, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="0 0 0 5"/>
-                    <GroupBox Header="Ping Protocols" Margin="0 0 0 5">
+                    <Label Content="Address" Foreground="#FFE8E8E8"/>
+                    <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE8E8E8" BorderBrush="#FF303030">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SendPing}" Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <Button Command="{Binding SendPing}" Height="32" Content="Ping" Margin="0 5 0 5" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
+                    <Label Content="Timeout" Foreground="#FFE8E8E8"/>
+                    <Slider Value="{Binding Timeout, UpdateSourceTrigger=PropertyChanged}" Minimum="10" Maximum="20000" Height="20" Margin="0 0 0 5"/>
+                    <GroupBox Header="Ping Protocols" Margin="0 0 0 5" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C" Foreground="#FFE8E8E8">
                         <StackPanel>
-                            <RadioButton IsChecked="{Binding ICMPChecked, UpdateSourceTrigger=PropertyChanged}" Content="ICMP Ping" Height="24"  Margin="0 0 0 5"/>
-                            <RadioButton IsChecked="{Binding TCPPChecked, UpdateSourceTrigger=PropertyChanged}" Content="TCP Ping"  Height="24"  Margin="0 0 0 5"/>
-                            <RadioButton IsChecked="{Binding UDPChecked, UpdateSourceTrigger=PropertyChanged}" Content="UDP Ping"  Height="24"  Margin="0 0 0 0"/>
-                            <RadioButton IsChecked="{Binding ARPChecked, UpdateSourceTrigger=PropertyChanged}" Content="ARP Ping"  Height="24"  Margin="0 0 0 5"/>
+                            <RadioButton IsChecked="{Binding ICMPChecked, UpdateSourceTrigger=PropertyChanged}" Content="ICMP Ping" Height="24"  Margin="0 0 0 5" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
+                            <RadioButton IsChecked="{Binding TCPChecked, UpdateSourceTrigger=PropertyChanged}" Content="TCP Ping"  Height="24"  Margin="0 0 0 5" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
+                            <RadioButton IsChecked="{Binding UDPChecked, UpdateSourceTrigger=PropertyChanged}" Content="UDP Ping"  Height="24"  Margin="0 0 0 5" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
+                            <RadioButton IsChecked="{Binding ARPChecked, UpdateSourceTrigger=PropertyChanged}" Content="ARP Ping (SLOW)"  Height="24" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Protocol Ports">
+                    <GroupBox Header="Protocol Ports" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C" Foreground="#FFE8E8E8">
                         <StackPanel>
-                            <Label Content="TCP Port" Height="24"  Margin="0 0 0 5"/>
-                            <Controls:NumericUpDown Value="{Binding TCPPort, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Label Content="UDP Port" Height="24"  Margin="0 0 0 5"/>
-                            <Controls:NumericUpDown Value="{Binding UDPPort, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Content="TCP Port" Height="24"  Margin="0 0 0 5" Foreground="#FFE8E8E8"/>
+                            <Controls:NumericUpDown Value="{Binding TCPPort, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="65536" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
+                            <Label Content="UDP Port" Height="24"  Margin="0 0 0 5" Foreground="#FFE8E8E8"/>
+                            <Controls:NumericUpDown Value="{Binding UDPPort, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="65536" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Information" Margin="204,0,0,0">
+        <GroupBox Header="Information" Margin="204,0,0,0" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C" Foreground="#FFE8E8E8">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <GroupBox Header="Ping Status Information">
+                <GroupBox Header="Ping Status Information" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C" Foreground="#FFE8E8E8">
                     <Grid>
                         <DataGrid 
                             ItemsSource="{Binding IpStatusList, UpdateSourceTrigger=PropertyChanged}" 
                             Margin="0,0,0,37"
                             CanUserAddRows="False"
                             CanUserDeleteRows="True"
-                            AutoGenerateColumns="False">
+                            AutoGenerateColumns="False" Foreground="#FFE8E8E8">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Success"     Binding="{Binding SuccessOrUnsuccess, UpdateSourceTrigger=PropertyChanged}"/>
                                 <DataGridTextColumn Header="Source"      Binding="{Binding SourceAddress, UpdateSourceTrigger=PropertyChanged}"/>
@@ -64,7 +68,7 @@
                                 <DataGridTextColumn Header="IPV6"        Binding="{Binding FoundIPV6, UpdateSourceTrigger=PropertyChanged}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Command="{Binding ClearIPStatusList}" VerticalAlignment="Bottom" Height="32" Content="Clear List"/>
+                        <Button Command="{Binding ClearIPStatusList}" VerticalAlignment="Bottom" Height="32" Content="Clear List" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
                     </Grid>
                 </GroupBox>
             </Grid>
