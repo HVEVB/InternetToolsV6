@@ -99,7 +99,6 @@ namespace InternetToolsV6.ViewModels
                 udpPort = value; RaisePropertyChanged();
             }
         }
-
         #endregion
 
 
