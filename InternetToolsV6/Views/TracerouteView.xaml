@@ -1,12 +1,45 @@
 ﻿<UserControl x:Class="InternetToolsV6.Views.TracerouteView"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InternetToolsV6.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             xmlns:viewmodel="clr-namespace:InternetToolsV6.ViewModels"
+             xmlns:views="clr-namespace:InternetToolsV6.Views"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <UserControl.DataContext>
+        <viewmodel:TracerouteViewModel/>
+    </UserControl.DataContext>
+    <GroupBox Header="Trace Route" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C">
+        <Grid>
+            <Button Command="{Binding SendTraceroute}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Tracert (ICMP)" Height="32" Width="120" BorderBrush="#FF303030"/>
+            <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="32" BorderBrush="#FF303030" Margin="125,0,0,0" FontSize="16" Controls:ControlsHelper.FocusBorderBrush="#FF363636" Controls:ControlsHelper.MouseOverBorderBrush="#FF363636">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding SendTraceroute}"/>
+                </TextBox.InputBindings>
+            </TextBox>
+            <Controls:NumericUpDown Minimum="1" Maximum="10000" Value="{Binding MaxHops, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="32" BorderBrush="#FF303030" Margin="86,37,0,0" FontSize="16" HorizontalAlignment="Left" Width="150"/>
+            <Label Content="Max Hops" HorizontalAlignment="Left" Margin="0,37,0,0" VerticalAlignment="Top" FontSize="16" Height="32"/>
+            <Label Content="Timeout (ms)" HorizontalAlignment="Left" Margin="241,37,0,0" VerticalAlignment="Top" FontSize="16" Height="32"/>
+            <Slider Minimum="1" Maximum="20000" Value="{Binding Timeout, UpdateSourceTrigger=PropertyChanged}" Margin="349,37,0,0" VerticalAlignment="Top" Height="32"/>
+            <Grid Margin="0,74,0,0">
+                <ListBox ItemsSource="{Binding TracerouteMessages, UpdateSourceTrigger=PropertyChanged}" 
+                          Margin="0,0,0,38" Foreground="#FFE8E8E8" FontSize="16">
+                        <!--  CanUserAddRows="False" 
+                          CanUserDeleteRows="True"
+                          AutoGenerateColumns="False" -->
+                   <!--<DataGrid.Columns>
+                        <DataGridTextColumn Header="Position"     Binding="{Binding AddressPosition}"/>
+                        <DataGridTextColumn Header="Status"     Binding="{Binding Status}"/>
+                        <DataGridTextColumn Header="Interval"      Binding="{Binding Interval}"/>
+                        <DataGridTextColumn Header="Route Address"        Binding="{Binding Route}"/>
+                        <DataGridTextColumn Header="Time"    Binding="{Binding TotalTime}"/>
+                    </DataGrid.Columns>-->
+                </ListBox>
+                <Button Command="{Binding ClearTracerouteTable}" VerticalAlignment="Bottom" Height="33" Content="Clear List" Foreground="#FFE8E8E8" BorderBrush="#FF303030"/>
+            </Grid>
+        </Grid>
+    </GroupBox>
 </UserControl>

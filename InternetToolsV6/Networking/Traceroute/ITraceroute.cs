@@ -8,6 +8,6 @@ namespace InternetToolsV6.Networking.Traceroute
 {
     public interface ITraceroute
     {
-        void SendTraceRoute(string Address, int Timeout);
+        IEnumerable<TracerouteDataStructure> SendTraceRoute(string Address, int Timeout, int MaxHops);
     }
 }
