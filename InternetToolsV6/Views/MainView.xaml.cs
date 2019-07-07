@@ -25,8 +25,6 @@ namespace InternetToolsV6
         public MainWindow()
         {
             InitializeComponent();
-            MainViewModel mvm = new MainViewModel();
-            DataContext = mvm;
         }
     }
 }

@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>medium-connection-128.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
@@ -66,7 +69,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Networking\HelperClasses\ExtraTools.cs" />
     <Compile Include="Networking\HelperClasses\GetIPAddresses.cs" />
+    <Compile Include="Networking\HelperClasses\IExtraTools.cs" />
     <Compile Include="Networking\HostnameIdentifyer\HostnameIdentifierM.cs" />
     <Compile Include="Networking\HostnameIdentifyer\HostnameIdentifierDataStructure.cs" />
     <Compile Include="Networking\HostnameIdentifyer\IHostnameIdentifier.cs" />
@@ -146,6 +151,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\icons8_location_filled_100_3Tp_icon.ico" />
+    <Resource Include="Resources\Images\icons8_web_address_100_q2v_icon.ico" />
+    <Resource Include="Resources\Images\medium-connection-128.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="medium-connection-128.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

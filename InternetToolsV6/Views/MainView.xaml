@@ -15,11 +15,41 @@
         WindowTitleBrush="#FF272727" 
         BorderBrush="#FF272727"
         Title="MainWindow">
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Grid Width="20" Height="20" Margin="4" RenderOptions.BitmapScalingMode="HighQuality">
+                <Image Source="/InternetToolsV6;component/Resources/Images/medium-connection-128.ico"></Image>
+            </Grid>
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Command="{Binding GetLocalIPAddress}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/InternetToolsV6;component/Resources/Images/icons8_location_filled_100_3Tp_icon.ico"/>
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Local IP" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding GetPublicIPAddress}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/InternetToolsV6;component/Resources/Images/icons8_web_address_100_q2v_icon.ico"/>
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Public IP" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
     <GroupBox Header="Main Panel" Background="#CC2C2C2C" BorderBrush="#CC2C2C2C">
         <Grid>
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="Tools">
-                    <MenuItem Header="Clear DNS Resolver"/>
+                    <MenuItem Header="Clear DNS Resolver" Command="{Binding FlushDNSResolver}"/>
+                    <MenuItem Header="Exit Program" Command="{Binding ExitProgram}"/>
                 </MenuItem>
             </Menu>
             <Grid Margin="0,30,0,0">
