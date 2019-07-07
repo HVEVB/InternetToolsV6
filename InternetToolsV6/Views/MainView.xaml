@@ -1,0 +1,75 @@
+﻿<Controls:MetroWindow x:Class="InternetToolsV6.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:InternetToolsV6.ViewModels"
+        xmlns:local="clr-namespace:InternetToolsV6"
+        Width="1080" Height="576"
+        mc:Ignorable="d"
+        Title="MainWindow">
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+    
+    
+    <GroupBox Header="Main Panel">
+        <Grid>
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="Tools">
+                    <MenuItem Header="Clear DNS Resolver"/>
+                </MenuItem>
+            </Menu>
+            <Grid Margin="0,30,0,0">
+                <GroupBox Header="Configurations" HorizontalAlignment="Left" Width="200">
+                    <Grid>
+                        <StackPanel>
+                            <Label Content="Address"/>
+                            <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Button Command="{Binding SendPing}" Height="32" Content="Ping" Margin="0 5 0 5"/>
+                            <Label Content="Timeout"/>
+                            <Slider Value="{Binding Timeout, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="0 0 0 5"/>
+                            <GroupBox Header="Ping Protocols" Margin="0 0 0 5">
+                                <StackPanel>
+                                    <RadioButton IsChecked="{Binding ICMPChecked, UpdateSourceTrigger=PropertyChanged}" Content="ICMP Ping" Height="24"  Margin="0 0 0 5"/>
+                                    <RadioButton IsChecked="{Binding TCPPChecked, UpdateSourceTrigger=PropertyChanged}" Content="TCP Ping"  Height="24"  Margin="0 0 0 5"/>
+                                    <RadioButton IsChecked="{Binding UDPChecked, UpdateSourceTrigger=PropertyChanged}" Content="UDP Ping"  Height="24"  Margin="0 0 0 0"/>
+                                    <RadioButton IsChecked="{Binding ARPChecked, UpdateSourceTrigger=PropertyChanged}" Content="ARP Ping"  Height="24"  Margin="0 0 0 5"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Protocol Ports">
+                                <StackPanel>
+                                    <Label Content="TCP Port" Height="24"  Margin="0 0 0 5"/>
+                                    <Controls:NumericUpDown Value="{Binding TCPPort, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Label Content="UDP Port" Height="24"  Margin="0 0 0 5"/>
+                                    <Controls:NumericUpDown Value="{Binding UDPPort, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Information" Margin="204,0,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Ping Status Information" Margin="0,0,2,0">
+                            <Grid>
+                                <DataGrid Margin="0,0,0,37"/>
+                                <Button Command="{Binding ClearIPStatusList}" VerticalAlignment="Bottom" Height="32" Content="Clear List"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="DNS Status Information" Margin="2,0,0,0" Grid.Column="1">
+                            <Grid>
+                                <DataGrid Margin="0,0,0,37"/>
+                                <Button Command="{Binding ClearDNSStatusList}" VerticalAlignment="Bottom" Height="32" Content="Clear List"/>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </GroupBox>
+</Controls:MetroWindow>
