@@ -39,7 +39,7 @@ namespace InternetToolsV6.ViewModels
 
         private void _getprivIP()
         {
-            BalloonMessage.SimpleSideMessage("Public IP Address", GetIPAddresses.GetLocalAddress);
+            BalloonMessage.SimpleSideMessage("Local IP Address", GetIPAddresses.GetLocalAddress);
         }
 
         private void _extApp()
