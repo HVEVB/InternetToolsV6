@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,14 @@ namespace InternetToolsV6.Utils
             Note.Icon = icon;
             Note.ShowBalloonTip(TaskbarTimeout);
             Clipboard.SetText(text);
+            Note.BalloonTipClosed += (object sender, EventArgs e) =>
+            {
+                Note.Visible = false;
+            };
+            Note.Click += (object sender, EventArgs e) =>
+            {
+                Note.Visible = false;
+            };
         }
 
         public static void SimpleSideMessage(string title, string text)
@@ -30,6 +39,14 @@ namespace InternetToolsV6.Utils
             Note.Icon = SystemIcons.Information;
             Note.ShowBalloonTip(5);
             Clipboard.SetText(text);
+            Note.BalloonTipClosed += (object sender, EventArgs e) =>
+            {
+                Note.Visible = false;
+            };
+            Note.Click += (object sender, EventArgs e) =>
+            {
+                Note.Visible = false;
+            };
         }
     }
 }
